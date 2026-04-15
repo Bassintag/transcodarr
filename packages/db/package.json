@@ -1,0 +1,7 @@
+{
+  "name": "@transcodarr/db",
+  "main": "./schema.ts",
+  "dependencies": {
+    "drizzle-orm": "beta"
+  }
+}

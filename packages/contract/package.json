@@ -1,0 +1,9 @@
+{
+  "name": "@transcodarr/contract",
+  "private": true,
+  "main": "./src/index.ts",
+  "dependencies": {
+    "@orpc/contract": "1.13.14",
+    "zod": "^4.3.6"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@transcodarr/api",
+  "private": true,
+  "dependencies": {
+    "@libsql/client": "^0.17.2",
+    "@orpc/server": "^1.13.14",
+    "@transcodarr/contract": "*",
+    "@transcodarr/db": "*",
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "beta",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.12"
+  }
+}

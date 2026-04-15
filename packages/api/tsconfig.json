@@ -1,0 +1,19 @@
+{
+  "include": ["**/*.ts"],
+  "compilerOptions": {
+    "paths": {
+      "#/*": ["./src/*"]
+    },
+    "types": ["bun"],
+
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+
+    "skipLibCheck": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  }
+}
