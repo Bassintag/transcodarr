@@ -9,50 +9,68 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as MediasIndexRouteImport } from './routes/medias/index'
+import { Route as MediasIdRouteImport } from './routes/medias/$id'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const MediasIndexRoute = MediasIndexRouteImport.update({
+  id: '/medias/',
+  path: '/medias/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MediasIdRoute = MediasIdRouteImport.update({
+  id: '/medias/$id',
+  path: '/medias/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/medias/$id': typeof MediasIdRoute
+  '/medias/': typeof MediasIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/medias/$id': typeof MediasIdRoute
+  '/medias': typeof MediasIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/medias/$id': typeof MediasIdRoute
+  '/medias/': typeof MediasIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/medias/$id' | '/medias/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/medias/$id' | '/medias'
+  id: '__root__' | '/medias/$id' | '/medias/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  MediasIdRoute: typeof MediasIdRoute
+  MediasIndexRoute: typeof MediasIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/medias/': {
+      id: '/medias/'
+      path: '/medias'
+      fullPath: '/medias/'
+      preLoaderRoute: typeof MediasIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/medias/$id': {
+      id: '/medias/$id'
+      path: '/medias/$id'
+      fullPath: '/medias/$id'
+      preLoaderRoute: typeof MediasIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  MediasIdRoute: MediasIdRoute,
+  MediasIndexRoute: MediasIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

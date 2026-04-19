@@ -1,11 +1,11 @@
-import { RPCHandler } from "@orpc/server/fetch";
-import { CORSPlugin } from "@orpc/server/plugins";
-import { StrictGetMethodPlugin } from "@orpc/server/plugins";
-import { router } from "./router";
+import { OpenAPIHandler } from "@orpc/openapi/fetch";
 import { onError } from "@orpc/server";
+import { CORSPlugin } from "@orpc/server/plugins";
+import { ZodSmartCoercionPlugin } from "@orpc/zod";
+import { router } from "./router";
 
-const handler = new RPCHandler(router, {
-  plugins: [new CORSPlugin(), new StrictGetMethodPlugin()],
+const handler = new OpenAPIHandler(router, {
+  plugins: [new CORSPlugin(), new ZodSmartCoercionPlugin()],
   interceptors: [
     onError((error) => {
       console.error(error);

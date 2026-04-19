@@ -1,10 +1,10 @@
 import { createORPCClient } from "@orpc/client";
 import { createTanstackQueryUtils } from "@orpc/tanstack-query";
-import { RPCLink } from "@orpc/client/fetch";
+import { OpenAPILink } from "@orpc/openapi-client/fetch";
 import { type ContractRouterClient } from "@orpc/contract";
 import { contract } from "@transcodarr/contract";
 
-const link = new RPCLink({
+const link = new OpenAPILink(contract, {
   url: "http://localhost:3001",
 });
 

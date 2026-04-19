@@ -1,19 +1,12 @@
-import { db } from "#/lib/db";
 import { oc } from "#/lib/oc";
+import { fileService } from "#/services/file";
 
-const list = oc.file.list.handler(async () => {
-  return db.query.files.findMany({
-    columns: { id: true, path: true },
-  });
+const list = oc.file.list.handler(async ({ input }) => {
+  return fileService.list(input.query);
 });
 
 const get = oc.file.get.handler(async ({ input }) => {
-  const file = await db.query.files.findFirst({
-    columns: { id: true, path: true },
-    where: { id: input.id },
-  });
-  if (file == null) throw new Error("Not found");
-  return file;
+  return fileService.get(input.params.id);
 });
 
 export const fileRoutes = { list, get };

@@ -2,6 +2,6 @@ import z from "zod";
 
 export const idSchema = z.int();
 
-export const withIdSchema = z.object({
-  id: idSchema,
+export const idParamsSchema = z.object({
+  id: z.coerce.number(),
 });

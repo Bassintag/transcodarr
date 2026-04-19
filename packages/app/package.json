@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "@transcodarr/app",
   "private": true,
   "type": "module",
   "imports": {
@@ -14,6 +14,7 @@
   "dependencies": {
     "@orpc/client": "^1.13.6",
     "@orpc/contract": "^1.13.14",
+    "@orpc/openapi-client": "^1.13.14",
     "@orpc/tanstack-query": "^1.13.6",
     "@orpc/zod": "^1.13.6",
     "@tailwindcss/vite": "^4.1.18",
@@ -24,9 +25,12 @@
     "@tanstack/react-router-devtools": "latest",
     "@tanstack/router-plugin": "^1.132.0",
     "@transcodarr/contract": "*",
+    "clsx": "^2.1.1",
+    "geist": "^1.7.0",
     "lucide-react": "^0.545.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.1.18",
     "zod": "^4.3.6"
   },
@@ -43,11 +47,5 @@
     "typescript": "^5.7.2",
     "vite": "^8.0.0",
     "vitest": "^3.0.5"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "lightningcss"
-    ]
   }
 }

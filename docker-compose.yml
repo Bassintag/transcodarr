@@ -1,0 +1,8 @@
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:alpine
+    ports:
+      - "9000:80"
+    volumes:
+      - ./data/images:/usr/share/nginx/html:ro

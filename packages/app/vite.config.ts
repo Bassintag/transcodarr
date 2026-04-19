@@ -13,6 +13,8 @@ const config = defineConfig({
     tailwindcss(),
     viteReact(),
   ],
+  envDir: "../../",
+  envPrefix: "PUBLIC_",
 });
 
 export default config;

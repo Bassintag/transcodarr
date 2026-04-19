@@ -1,9 +1,16 @@
-import { oc } from "@orpc/contract";
-import { fileSchema } from "../schemas";
+import { fileSchema, filesQuerySchema } from "../schemas";
 import z from "zod";
-import { withIdSchema } from "../schemas/common";
+import { idParamsSchema } from "../schemas/common";
+import { oc } from "../oc";
 
-export const fileContract = {
-  list: oc.output(z.array(fileSchema)),
-  get: oc.input(withIdSchema).output(fileSchema),
-};
+const list = oc
+  .route({ path: "/", method: "GET" })
+  .input(z.object({ query: filesQuerySchema }))
+  .output(z.array(fileSchema));
+
+const get = oc
+  .route({ path: "/{id}", method: "GET" })
+  .input(z.object({ params: idParamsSchema }))
+  .output(fileSchema);
+
+export const fileContract = oc.prefix("/files").router({ list, get });
