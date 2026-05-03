@@ -12,6 +12,8 @@ const envSchema = z.object({
 
   DATA_FOLDER_PATH: z.string(),
 
+  MEDIA_FOLDER_PATH: z.string().optional(),
+
   DB_FILE_NAME: z.string(),
 });
 

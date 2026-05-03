@@ -1,15 +1,23 @@
+import { LoggingHandlerPlugin } from "@orpc/experimental-pino";
 import { OpenAPIHandler } from "@orpc/openapi/fetch";
-import { onError } from "@orpc/server";
 import { CORSPlugin } from "@orpc/server/plugins";
 import { ZodSmartCoercionPlugin } from "@orpc/zod";
+import pino from "pino";
 import { router } from "./router";
+import { v4 } from "uuid";
+
+const logger = pino();
 
 const handler = new OpenAPIHandler(router, {
-  plugins: [new CORSPlugin(), new ZodSmartCoercionPlugin()],
-  interceptors: [
-    onError((error) => {
-      console.error(error);
+  plugins: [
+    new LoggingHandlerPlugin({
+      logger,
+      generateId: () => v4(),
+      logRequestAbort: true,
+      logRequestResponse: true,
     }),
+    new CORSPlugin(),
+    new ZodSmartCoercionPlugin(),
   ],
 });
 

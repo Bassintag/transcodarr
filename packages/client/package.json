@@ -1,11 +1,22 @@
 {
   "name": "@transcodarr/client",
   "private": true,
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "start": "bun src/index.ts"
+  },
   "dependencies": {
     "@orpc/client": "^1.13.6",
     "@orpc/contract": "^1.13.14",
     "@orpc/openapi-client": "^1.13.14",
     "@orpc/zod": "^1.13.6",
-    "@transcodarr/contract": "*"
+    "@transcodarr/contract": "*",
+    "cli-progress": "^3.12.0",
+    "dotenv": "^17.4.2",
+    "pretty-bytes": "^7.1.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/cli-progress": "^3.11.6"
   }
 }

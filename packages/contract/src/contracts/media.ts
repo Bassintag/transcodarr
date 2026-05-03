@@ -1,7 +1,7 @@
 import z from "zod";
 import { mediaSchema } from "../schemas";
 import { idParamsSchema } from "../schemas/common";
-import { oc } from "../oc";
+import { oc } from "@orpc/contract";
 
 const list = oc
   .route({ path: "/", method: "GET" })

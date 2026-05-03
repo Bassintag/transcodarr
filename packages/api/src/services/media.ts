@@ -1,33 +1,16 @@
 import { db } from "#/lib/db";
-
-const options = {
-  columns: {
-    id: true,
-    title: true,
-    provider: true,
-    providerId: true,
-  },
-  with: {
-    images: {
-      columns: {
-        id: true,
-        type: true,
-        url: true,
-      },
-    },
-  },
-} as const;
+import { mediaOptions } from "#/options/media";
 
 async function list() {
   return db.query.medias.findMany({
-    ...options,
+    ...mediaOptions,
     orderBy: { title: "asc" },
   });
 }
 
 async function get(id: number) {
   const media = await db.query.medias.findFirst({
-    ...options,
+    ...mediaOptions,
     where: { id },
   });
   if (media == null) throw new Error("Not found");
